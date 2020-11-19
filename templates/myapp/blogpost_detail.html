@@ -1,0 +1,25 @@
+{% extends 'myapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="container">
+      <div class="jumbotron">
+        <form method="post" class="uniForm" enctype="multipart/form-data">
+            <h2>{{ blogpost.post_title }}</h2>
+            <p>{{ blogpost.post_content }}</p>
+            <a href="{% url 'user-posts' blogpost.post_author.username %}">{{ blogpost.post_author }}</a>
+            <small>{{ blogpost.date_created|date:"F d, Y"}}</small>
+            
+      </div>
+      {% if user == blogpost.post_author %}
+      <a class="btn btn-success btn-sm" href="{% url 'post-update' blogpost.id %}">Update</a>
+      <a class="btn btn-danger btn-sm" href="{% url 'post-delete' blogpost.id %}">Delete</a>
+      {% endif %}
+    </div>
+    
+    <div class="container">
+
+
+    </div>
+
+{% endblock %}

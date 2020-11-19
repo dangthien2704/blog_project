@@ -1,0 +1,16 @@
+{% extends 'users/base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div class="container">
+
+    <form method="post" class="uniForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p></p>
+        <h3>Log in below to experience out service:</h3>
+        {{ form|crispy }}
+        <input class="btn btn-info btn-sm" type="submit" name="" value="SUBMIT">
+        <p></p>
+        <p>Need an account? <small><a href="{% url 'register' %}">Sign Up Here!</a></small></p>
+        <p>Forgot password?<small><a href="{% url 'password_reset' %}"> Reset your password here!</a></small></p>
+
+    </form>
+</div>
+{% endblock %}

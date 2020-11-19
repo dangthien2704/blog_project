@@ -1,0 +1,36 @@
+{% extends 'myapp/base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div class="container">
+    <h3>Welcome to Blog's {{ view.kwargs.username }} ({{ page_obj.paginator.count }} Posts) </h3>
+</div>
+{% for post in object_list %}
+<div class="container">
+    <div class="jumbotron">
+
+        <div class="container">
+
+            <img src="{{ post.post_author.profileinfo.image_user.url }}" class="rounded-circle btn-sm" width="85" height="70" alt="">
+            <div class="wrapper">
+                <a href="{% url 'user-posts' post.post_author %}">{{ post.post_author }}</a>
+                <p><small>{{ post.date_created|date:"F d, Y"}}</small></p>
+            </div>
+        </div>
+
+        <h2><a href="{% url 'post-detail' post.id %}">{{ post.post_title }}</a></h2>
+        <p>{{ post.post_content }}</p>
+
+    </div>
+</div>
+{% endfor %}
+<div class="container">
+    {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a> {#
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}"><small>< Previous</small></a>#} {% endif %} {% for num in page_obj.paginator.page_range %} {% if page_obj.number == num %}
+    <a class="btn btn-info mb-4" href="?page= {{ num }}">{{ num }}</a> {% elif num > page_obj.number|add:'-2' and num
+    < page_obj.number|add: '2' %} <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %} {% endfor %} {% if page_obj.has_next %} {#
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}"><small>Next ></small></a>#}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a> {% endif %}
+</div>
+
+
+{% endblock %}

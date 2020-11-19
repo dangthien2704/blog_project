@@ -1,0 +1,32 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+  <div class="container">
+      <div class="media">
+        <form method="post" class="uniForm" enctype="multipart/form-data">
+          <img src=" {{ user.profileinfo.image_user.url }} " class="rounded-circle" width="100" height="100">
+            <p></p>
+            <p><strong>{{ user.username.upper }}</strong></p>
+            <p>{{ user.email }}</p>
+        </form>
+      </div>
+  </div>
+
+  <div class="container">
+    <form method="post" class="uniForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_uform|crispy }}
+        {{ profile_uform|crispy }}
+        <input class="btn btn-success" type="submit" name="" value="UPDATE">
+    </form>
+  </div>
+
+
+{% endblock %}

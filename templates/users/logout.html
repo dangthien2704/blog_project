@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+  <form method="post" class="uniForm" enctype="multipart/form-data">
+    <h2>Your account has been logged out!</h2>
+    <p></p>
+    <p>Login again? <a href="{% url 'login' %}">Login</a></p>
+    <p>Home Page? <a href="{% url 'home' %}">Home Page</a></p>
+  </form>
+</div>
+
+
+{% endblock %}
