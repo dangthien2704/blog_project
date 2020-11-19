@@ -46,16 +46,9 @@ def register(request):
 
         if form.is_valid() and profile.is_valid():
 
-            user_request = (
-                form.save()
-            )  # when we using form.save() it means we creating a user
-            profile_request = profile.save(
-                commit=False
-            )  # Now we creating a new form but
-            # we dont want to save profile to
-            # database right away. We will after we've
-            # done with creating a relation between user
-            # and profile so we use commit=False
+            user_request = (form.save())
+            profile_request = profile.save(commit=False)
+
             profile_request.user = user_request
             profile_request.save()
 

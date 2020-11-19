@@ -18,4 +18,4 @@ class ProfileInfo(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image_user.path)  # we save it back to the same back
-            # cause we are overiding the image
+                                            # cause we are overiding the image

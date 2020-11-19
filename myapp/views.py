@@ -10,8 +10,6 @@ from django.views.generic import (
     DeleteView,
 )
 
-# Create your views here.
-
 
 class PostListView(ListView):
     model = BlogPost
@@ -67,18 +65,3 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         else:
             return False
 
-
-# class PostCreateView(CreateView):
-#     model = Post
-#     fields = ['post_title', 'post_content']
-#
-#     def form_valid(self, form):
-#         form.instance.post_author = self.request.user
-#         #before you're tryina       #.. equal to the current user
-#         #submit the form take
-#         #that instance and set
-#         #the author equal ..
-#         return super().form_valid(form) # It means run form_valid method which is inheritated from
-#                                         # our parent class with the argument "form" of the child class
-#                                         # but make sure the parent class has form argument also with the
-#                                         # value is different from the value of the form argument of the child class
